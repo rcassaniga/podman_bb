@@ -1,6 +1,6 @@
-IMG=jsalatiel/wsbb-podman:latest
-CONTAINER_NAME=wsbb
-DOCKERCMD=sudo podman
+IMG=rcassaniga/podman_bb:latest
+CONTAINER_NAME=warsaw_bb
+DOCKERCMD=podman
 
 
 USER_UID = $(shell id -u $(USER))
@@ -17,9 +17,10 @@ start:
 		--cap-add CAP_AUDIT_WRITE  --cap-add  CAP_SYS_PTRACE  \
 		-e USER_UID=$(USER_UID) \
 		-e USER_GID=$(USER_GID) \
-		-v "$(HOME)/.Xauthority:/home/user/.Xauthority:ro" \
+		-v "$(XAUTHORITY):/root/.Xauthority:ro" \
 		-v "/tmp/.X11-unix:/tmp/.X11-unix:ro" \
 		-v "/etc/machine-id:/etc/machine-id:ro" \
+		-v "$(HOME)/BBShare:/home/user/Downloads:rw" \
 		$(IMG) seg.bb.com.br
 logs:
 	$(DOCKERCMD) logs -f ${CONTAINER_NAME}
