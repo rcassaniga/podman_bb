@@ -1,10 +1,18 @@
 # podman_bb
 
+Rootless non-root podman para o módulo de segurança warsaw, usado pelo BB,
+CEF e muitos outros bancos e órgãos do governo brasileiro.
+https://diagnostico.gasantifraud.com/
 
 Créditos a jsalatiel/wsbb-podman, farribeiro/wscef-docker e juliohm1978/dockerbb
 
 O contêiner tem o módulo de segurança (warsaw) instalado e o navegador é o
-firefox. Testado numa máquina hospedeira Ubuntu 21.04
+firefox. Infelizmente, por causa do warsaw, o contêniner foi montado numa
+estrutura de serviços do *init*. É importante ressaltar que as janelas do
+firefox aparecem na máquina hopedeira por meio dos protocolos X. Não foi usado
+VNC, rdesktop e afins. Testado numa máquina hospedeira Ubuntu 21.10.
+
+Uso:
 
 **make build** para construir o contêiner
 
